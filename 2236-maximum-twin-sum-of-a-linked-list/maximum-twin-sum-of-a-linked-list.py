@@ -5,25 +5,28 @@
 #         self.next = next
 class Solution:
     def pairSum(self, head: Optional[ListNode]) -> int:
-        res=[]
-        while(head):
-            res.append(head.val)
-            head=head.next
+        slow=head
+        fast=head
+        while(fast):
+            slow = slow.next
+            fast = fast.next.next
         
-        i=0
-        j=len(res)-1
-        maxi = -1
-        while(i<j):
-            if res[i]+res[j]>maxi:
-                maxi = res[i]+res[j]
-            i+=1
-            j-=1
+        c=slow.next
+        prev=None
+        while(c):
+            slow.next = prev
+            prev =slow
+            slow = c
+            c = slow.next
+        slow.next = prev
+        maxi=-1
+        while(head and slow):
+            if head.val+slow.val > maxi:
+                maxi = head.val + slow.val
+            head = head.next
+            slow = slow.next
         return maxi
-
-
-
-
-
+        
 
 
         
