@@ -1,7 +1,5 @@
 class Solution:
-    def firstPalindrome(self, words: List[str]) -> str:
-
-        def palindrome(word):
+    def palindrome(self,word):
             i=0
             j=len(word)-1
             while(i<=j):
@@ -10,9 +8,10 @@ class Solution:
                 i+=1
                 j-=1
             return True
-        
+
+    def firstPalindrome(self, words: List[str]) -> str:
         for word in words:
-            if palindrome(word):
+            if self.palindrome(word):
                 return word
         return ""
 
