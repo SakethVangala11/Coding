@@ -6,9 +6,10 @@ class KthLargest:
         nums.sort(reverse = True)
         count=0
         for i in nums:
-            if(k):
+            if(count!=k):
                 heapq.heappush(self.pq,i)
-                k-=1
+                count+=1
+
 
     def add(self, val: int) -> int:
         if len(self.pq)!=self.k:
