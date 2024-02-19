@@ -8,8 +8,7 @@ class Solution:
                 heapq.heappush(pq,(-dist,x,y))
             elif len(pq)==k:
                 if dist < -pq[0][0]:
-                    heapq.heappop(pq)
-                    heapq.heappush(pq,(-dist,x,y))
+                    heapq.heappushpop(pq,(-dist,x,y))
         return [(x,y) for (dist,x,y) in pq]
         
             
