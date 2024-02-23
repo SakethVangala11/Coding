@@ -12,3 +12,8 @@ class Solution:
         if n == len(l):
             return True
         return False
+
+        if len(d) == len(set(d.values())):
+            return True
+        else:
+            return False
