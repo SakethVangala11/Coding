@@ -19,10 +19,4 @@ class Solution:
                     q.append(node.left)
                 if node.right:
                     q.append(node.right)
-        print(res)
-
-        return lefty.val
-
-
-
-        
+        return lefty.val      
