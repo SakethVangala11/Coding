@@ -11,27 +11,32 @@ class Solution:
         while q:
             qlen = len(q)
             print(level)
-            result = []
+            if level%2==0:
+                prev = -1
+            else:
+                prev = 9999999
             for i in range(qlen):
                 node = q.pop(0)
-                result.append(node.val)
+                if level%2==0:
+                    if node.val%2==0:
+                        return False
+                    else:
+                        if node.val <= prev:
+                            return False
+                        else:
+                            prev = node.val
+                else:
+                    if node.val%2!=0:
+                        return False
+                    else:
+                        if node.val>=prev:
+                            return False
+                        else:
+                            prev = node.val
                 if node.left:
                     q.append(node.left)
                 if node.right:
                     q.append(node.right)
-            if level%2==0:
-                for i in range(len(result)-1):
-                    if result[i]%2==0 or result[i+1]<=result[i]:
-                        return False
-                if result[-1]%2==0:
-                    return False
-            else:
-                for i in range(len(result)-1):
-                    if result[i]%2!=0 or result[i+1]>=result[i]:
-                        return False
-                if result[-1]%2!=0:
-                    return False
-            print(result)
             level+=1
         return True
         
