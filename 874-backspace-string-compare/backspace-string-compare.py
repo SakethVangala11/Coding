@@ -2,17 +2,15 @@ class Solution:
     def backspaceCompare(self, s: str, t: str) -> bool:
         sr = ""
         tr =""
-        for i in s:
-            if i == "#":
-                if sr:
-                    sr = sr[:-1:]
-            else:
-                sr+=i
-        for i in t:
-            if i == "#":
-                if tr:
-                    tr = tr[:-1:]
-            else:
-                tr+=i
-        return tr == sr
+        def modify(original,modified):
+            for i in original:
+                if i== "#":
+                    if modified:
+                        modified =  modified[:-1:]
+                else:
+                    modified+=i
+            return modified
+
+        
+        return modify(s,sr) == modify(t,tr)
         
