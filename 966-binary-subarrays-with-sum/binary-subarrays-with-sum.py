@@ -7,9 +7,6 @@ class Solution:
             sumo+=num
             if sumo - goal in prefix_dict:
                 count+=prefix_dict[sumo-goal]
-            if sumo in prefix_dict:
-                prefix_dict[sumo]+=1
-            else:
-                prefix_dict[sumo]=1
+            prefix_dict[sumo] = prefix_dict.get(sumo,0)+1
         return count
         
