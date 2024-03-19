@@ -8,10 +8,9 @@ class Solution:
     def findSecondMinimumValue(self, root: Optional[TreeNode]) -> int:
         min_val = float('inf')
         second_min_val = float('inf')
-        q = [root]
+        q = deque([root])
         while(q):
-            qlen = len(q)
-            node = q.pop(0)
+            node = q.popleft()
             if node.val<min_val:
                 second_min_val = min_val
                 min_val = node.val
