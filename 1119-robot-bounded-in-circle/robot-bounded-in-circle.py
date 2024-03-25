@@ -1,46 +1,19 @@
 class Solution:
     def isRobotBounded(self, instructions: str) -> bool:
         x, y = 0, 0
-        d = 'N'
+        d = 0
         for i in instructions:
             if i == 'G':
-                match d:
-                    case 'N':
-                        y+=1
-                    case 'S':
-                        y-=1
-                    case 'W':
-                        x-=1
-                    case 'E':
-                        x+=1
-            else:
-                if i=='L':
-                    match d:
-                        case 'N':
-                            d = 'W'
-                        case 'W':
-                            d = 'S'
-                        case 'S':
-                            d = 'E'
-                        case 'E':
-                            d = 'N'
-                if i == 'R':
-                    match d:
-                        case 'N':
-                            d = 'E'
-                        case 'E':
-                            d = 'S'
-                        case 'S':
-                            d = 'W'
-                        case 'W':
-                            d = 'N'
-        if x==0 and y==0:
-            return True
-        if d == 'N':
-            return False
-        return True
-        
-
-
-    
-        
+                if d == 0:
+                    y+=1
+                elif d == 1:
+                    x+=1
+                elif d == 2:
+                    y-=1
+                elif d == 3:
+                    x-=1
+            if i == 'L':
+                d = (d-1)%4
+            elif i == 'R':
+                d = (d+1)%4         
+        return (x,y) == (0,0) or d!=0    
