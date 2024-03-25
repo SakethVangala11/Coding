@@ -1,16 +1,16 @@
 class Solution:
-    def backspaceCompare(self, s: str, t: str) -> bool:
-        sr = ""
-        tr =""
-        def modify(original,modified):
-            for i in original:
-                if i== "#":
-                    if modified:
-                        modified =  modified[:-1:]
-                else:
-                    modified+=i
-            return modified
+    def result(self,pattern):
+        l = []
+        for i in pattern:
+            if i == '#':
+                if l:
+                    l.pop()
+            else:
+                l.append(i)
+        return l
 
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        return self.result(s) == self.result(t)
         
-        return modify(s,sr) == modify(t,tr)
+        
         
