@@ -3,9 +3,10 @@ class Solution:
         substr = []
         for i in range(len(s)):
             temp = ""
+            se = set()
             for j in range(i,len(s)):
                 temp+=s[j]
-                se = set(temp)
+                se.add(s[j])
                 if j-i+1 >=minSize and j-i+1 <=maxSize and len(se)<=maxLetters:
                     substr.append(temp)
                 if j-i+1>maxSize or len(se)>maxLetters:
