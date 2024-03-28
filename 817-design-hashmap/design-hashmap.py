@@ -1,19 +1,54 @@
+class Node:
+    def __init__(self, key = -1, val = -1, next = None):
+        self.key = key
+        self.val = val
+        self.next = next
+
 class MyHashMap:
-
     def __init__(self):
-        self.l = [float('inf')]*1000001
-
+        self.map = [Node() for i in range(1000)]
+        
     def put(self, key: int, value: int) -> None:
-        self.l[key] = value
+        mod = key%1000
+        head = self.map[mod]
+        cur = head
+        prev = None
+        while(cur):
+            if cur.key == key:
+                prev.next = cur.next
+                break
+            prev = cur
+            cur = cur.next
+        node = Node(key, value)
+        while(prev.next):
+            prev = prev.next
+        prev.next = node
         
     def get(self, key: int) -> int:
-        if self.l[key]==float('inf'):
-            return -1
-        return self.l[key]
-        
+        mod = key%1000
+        head = self.map[mod]
+        cur = head
+        while(cur):
+            if cur.key == key:
+                return cur.val
+            cur = cur.next
+        return -1
+
     def remove(self, key: int) -> None:
-        self.l[key] = float('inf')
+        mod = key%1000
+        head = self.map[mod]
+        prev = None
+        cur = head
+        while(cur):
+            if cur.key == key:
+                prev.next = cur.next
+            prev = cur
+            cur = cur.next
+    
         
+        
+
+
 # Your MyHashMap object will be instantiated and called as such:
 # obj = MyHashMap()
 # obj.put(key,value)
