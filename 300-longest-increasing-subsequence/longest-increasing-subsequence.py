@@ -1,6 +1,6 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        LIS = [1]*(len(nums))
+        LIS = [1 for i in range(len(nums))]
 
         for i in range(len(nums)-2, -1, -1):
             tempmax = 0
