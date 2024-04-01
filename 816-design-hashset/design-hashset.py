@@ -5,7 +5,7 @@ class Node:
 
 class MyHashSet:
     def __init__(self):
-        self.hashSet = [Node(-1)]*(10000)
+        self.hashSet = [Node(-1) for i in range(10000)]
         
 
     def add(self, key: int) -> None:
@@ -27,6 +27,7 @@ class MyHashSet:
         while(cur):
             if cur.key == key:
                 prev.next = cur.next
+                break
             prev = cur
             cur = cur.next
         
