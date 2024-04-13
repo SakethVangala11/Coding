@@ -1,20 +1,24 @@
 class Solution:
     def garbageCollection(self, garbage: List[str], travel: List[int]) -> int:
         ans = 0
-        travel.insert(0,0)
-        types = ['M','P','G']
+        lastOccurences = {'M':-1, 'P':-1, 'G':-1}
+        types = ['M', 'P', 'G']
+        ps = [0]*len(garbage)
+        for i in range(1, len(garbage)):
+            ps[i] = ps[i-1] + travel[i-1]
+        print(ps)
         for type in types:
-            a = 0
-            curTravel = 0
+            last = -1
+            count = 0
+            idx = 0
             for i in garbage:
-                count=0
                 for j in i:
                     if j == type:
                         count+=1
-                curTravel+=travel[a]
-                a+=1
-                if count:
-                    ans+=count
-                    ans+=curTravel
-                    curTravel = 0
-        return ans      
+                        last = idx
+                idx+=1
+            lastOccurences[type] = last
+            ans+=count
+            if lastOccurences[type] >= 0:
+                ans+=ps[lastOccurences[type]]
+        return ans
