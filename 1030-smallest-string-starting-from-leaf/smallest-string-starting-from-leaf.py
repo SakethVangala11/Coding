@@ -7,20 +7,15 @@
 class Solution:
     def smallestFromLeaf(self, root: Optional[TreeNode]) -> str:
         s = []
-
         def dfs(root, temp):
             if not root.left and not root.right:
-                s.append(temp+chr(root.val+97))
+                temp+=chr(root.val+97)
+                s.append(''.join(temp[::-1]))
                 return 
             if root.left:
                 dfs(root.left, temp + chr(root.val+97))
             if root.right:
                 dfs(root.right, temp + chr(root.val+97))
         dfs(root, "")
-        res = []
-        for i in s:
-            res.append(i[::-1])
-        res.sort()
-        return res[0]
-            
-        
+        s.sort()
+        return s[0]       
