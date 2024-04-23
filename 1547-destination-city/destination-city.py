@@ -1,24 +1,14 @@
 class Solution:
     def destCity(self, paths: List[List[str]]) -> str:
-        s = set()
+        sources = set()
+        destinations = set()
+
         for i in paths:
-            s.add(i[0])
-            s.add(i[1])
+            sources.add(i[0])
+            destinations.add(i[1])
+        ans = (destinations - sources).pop()
+        return ans
         
-        source = False
-        destination = False
-
-        for i in s:
-            for j in paths:
-                if i == j[0]:
-                    source = True
-                if i == j[1]:
-                    destination = True
-
-            if destination and not source:
-                return i
-            source = False
-            destination = False
-
+        
 
         
