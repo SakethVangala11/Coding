@@ -5,7 +5,7 @@ class Solution {
         for(String word: words) {
             StringBuilder morse = new StringBuilder();
             for(char c: word.toCharArray()){
-                morse.append(list[c-'a']);
+                morse.append(list[(int)c - 97]);
             }
             set.add(morse.toString());
         }
