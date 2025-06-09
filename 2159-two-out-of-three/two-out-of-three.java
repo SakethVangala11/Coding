@@ -1,25 +1,24 @@
 class Solution {
     public List<Integer> twoOutOfThree(int[] nums1, int[] nums2, int[] nums3) {
-        HashSet<Integer> set1 = Arrays.stream(nums1).boxed().collect(Collectors.toCollection(HashSet::new));
-        HashSet<Integer> set2 = Arrays.stream(nums2).boxed().collect(Collectors.toCollection(HashSet::new));
-        HashSet<Integer> set3 = Arrays.stream(nums3).boxed().collect(Collectors.toCollection(HashSet::new));
-        HashSet<Integer> result = new HashSet<Integer>();
-        for(Integer element: set1){
-            if(set2.contains(element) || set3.contains(element)){
-                result.add(element);
+        Map<Integer, Integer> freq = new HashMap<>();
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
+        Set<Integer> set3 = new HashSet<>();
+
+        for (int n : nums1) set1.add(n);
+        for (int n : nums2) set2.add(n);
+        for (int n : nums3) set3.add(n);
+
+        for (int n : set1) freq.put(n, freq.getOrDefault(n, 0) + 1);
+        for (int n : set2) freq.put(n, freq.getOrDefault(n, 0) + 1);
+        for (int n : set3) freq.put(n, freq.getOrDefault(n, 0) + 1);
+
+        List<Integer> result = new ArrayList<>();
+        for(Integer key: freq.keySet()) {
+            if(freq.get(key) >=2) {
+                result.add(key);
             }
         }
-        for(Integer element: set2){
-            if(set1.contains(element) || set3.contains(element)){
-                result.add(element);
-            }
-        }
-        for(Integer element: set3){
-            if(set1.contains(element) || set2.contains(element)){
-                result.add(element);
-            }
-        }
-        List<Integer> list = result.stream().collect(Collectors.toList());
-        return list;
+        return result;
     }
 }
