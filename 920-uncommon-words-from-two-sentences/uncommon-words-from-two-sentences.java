@@ -8,13 +8,11 @@ class Solution {
             map.put(word, map.getOrDefault(word,0)+1);
         }
         ArrayList<String> result = new ArrayList<String>();
-        for(String key: map.keySet()){
-            Integer value = map.get(key);
-            if(value == 1){
-                result.add(key);
+        for(Map.Entry<String,Integer> entry: map.entrySet()){
+            if(entry.getValue() == 1){
+                result.add(entry.getKey());
             }
         }
-        String[] ans = result.stream().toArray(String[]::new);
-        return ans;
+        return result.toArray(new String[0]);
     }
 }
