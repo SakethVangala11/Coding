@@ -10,10 +10,6 @@ class Solution {
             n/=10;
         }
         int sumo = sum+product;
-        System.out.println(sumo);
-        if(num%sumo == 0){
-            return true;
-        }
-        return false;
+        return num%sumo == 0;
     }
 }
